@@ -1,0 +1,24 @@
+NAME="wmctrl"
+VERSION=1.07
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Command-line tool to interact with an X window manager"
+DESCRIPTION="This tool provides command line access to almost all the features
+defined in the EWMH specification. It can be used, for example, to obtain
+information about the window manager, to get a detailed list of desktops and
+managed windows, to switch and resize desktops, to make windows full-screen,
+always-above or sticky, and to activate, close, move, resize, maximize and
+minimize them."
+HOMEPAGE="http://sweb.cz/tripie/utils/wmctrl"
+SRC_URI="
+	${HOMEPAGE}/dist/wmctrl-${VERSION}.tar.gz
+	mirror://debian/pool/main/w/wmctrl/wmctrl_${VERSION}-7.debian.tar.gz
+"
+PATCH_URI="
+	http://pkgs.fedoraproject.org/cgit/rpms/wmctrl.git/plain/wmctrl-sticky-workspace.patch
+"
+
+CYGPORT_USE_UNSTABLE_API=1
+src_unpack_hook() {
+	cygpatch ../debian/patches/*.patch
+}
